@@ -4,7 +4,7 @@ import buildspaceLogo from '../assets/buildspace-logo.png';
 import { useState } from 'react';
 
 export default function Home() {
-  const [userInput, setUserInput] = useState('');
+  const [userInput, setUserInput] = useState('Blog content for  Blockchain and  NFT');
   const [apiOutput, setApiOutput] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   const onUserChangedText = (event) => {
-    console.log(event.target.value);
+    setApiOutput('');
     setUserInput(event.target.value);
   };
   return (
@@ -37,14 +37,16 @@ export default function Home() {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Technical Blogs</h1>
+            <h1>Sanket's Blog Content  Creator</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Technical Blog on Web 3.0 and Digital Transformation </h2>
+            <h2>Write a sentence on topic for content generation </h2>
           </div>
         </div>
-        {/* Add this code here*/}
+       
+        
         <div className="prompt-container">
+
           <textarea
             className="prompt-box"
             placeholder="start typing here"
@@ -65,7 +67,7 @@ export default function Home() {
             <div className="output">
               <div className="output-header-container">
                 <div className="output-header">
-                  <h3>Output</h3>
+                  <h3>{userInput}</h3>
                 </div>
               </div>
               <div className="output-content">
