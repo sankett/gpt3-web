@@ -12,7 +12,7 @@ body {
     align-items: center;
     background-color: rgb(0, 0, 0);
     flex-flow: column nowrap;
-    gap: 10px;
+    gap: 2px;
     height: 100vh;
     overflow: auto;
     padding: 0px;
@@ -30,7 +30,7 @@ body {
     height: fit-content;
     max-width: 975px;
     overflow: auto;
-    padding: 50px;
+    padding:20px;
     position: relative;
     width: auto;
     gap: 24px;
@@ -70,12 +70,13 @@ body {
 }
 
 .labeltitle {
-    font-size: 15px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 1.4em;
-    color: rgba(208, 211, 17, 0.75);
+    color: rgb(238, 237, 245);
     text-align: left !important;
+    width: 100%;
 }
 
 .prompt-container {
@@ -99,6 +100,36 @@ body {
     margin-top: 20px;
 }
 
+.drop-box {
+    border-bottom-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-top-width: 1px;
+    place-content: flex-start;
+    align-items: flex-start;
+    
+    border-radius: 16px;
+   
+    height: 40px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 510px;
+    max-width: 1200px;
+    will-change: transform;
+    overflow: auto;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    font-style: normal;
+    letter-spacing: 0px;
+    line-height: 1.6em;
+    text-align: start;
+  
+}
+
 
 .prompt-box {
     border-bottom-width: 1px;
@@ -115,7 +146,7 @@ body {
     flex: 0 0 auto;
     flex-flow: column nowrap;
     gap: 10px;
-    height: 30px;
+    height: 70px;
     overflow: hidden;
     padding: 10px;
     position: relative;
@@ -130,9 +161,11 @@ body {
     letter-spacing: 0px;
     line-height: 1.6em;
     text-align: start;
-    color: rgba(223, 215, 215, 0.75);
+    color: rgb(251, 246, 246);
     text-decoration: none;
     text-transform: none;
+    border-color:rgba(255, 255, 255, 0.75);
+    white-space:break-spaces;
 }
 
 textarea {
@@ -141,7 +174,7 @@ textarea {
 
 
 .prompt-box:focus {
-    border-color:rgba(255, 255, 255, 0.75)
+    border-color:rgba(238, 201, 17, 0.75)
 }
 
 
@@ -194,10 +227,10 @@ textarea {
 .generate-button {
     place-content: flex-start;
     align-items: flex-start;
-    background-color: rgb(81, 18, 255);
+    background-color: rgb(108, 71, 209);
     border-radius: 20px;
     display: flex;
-    flex: 1 1 100px;
+    flex: 1 1 50px;
     flex-flow: column nowrap;
     gap: 10px;
     height: min-content;
@@ -344,8 +377,29 @@ textarea {
 
 .output-content p {
     text-align: left;
-    white-space: pre-line;
-    color: rgba(255, 255, 255, 0.5);
+    white-space:break-spaces;
+    color: rgb(240, 240, 232);
+    
+}
+
+.output-contentCode {
+    outline: none;
+    display: flex;
+    width: 98%;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    transform: none;
+    
+}
+
+.output-contentCode p {
+    text-align: left;
+    white-space:break-spaces;
+    color: rgb(232, 232, 28);
+    background-color: rgb(42, 42, 43);
+    padding: 20px;
+    font-size: 14px;
 }
 
 @media (min-width: 810px) and (max-width: 1199px) {
