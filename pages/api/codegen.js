@@ -16,6 +16,7 @@ const generateCode = async (req, res) => {
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
+        //stream: true,
         });
       const data = response.data.choices[0];
       

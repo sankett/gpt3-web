@@ -139,7 +139,7 @@ export default function Home() {
             <h1>Sanket's Openai Demo</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Write a sentence on topic for content generation </h2>
+            <h2>Oops..It is getting upgraded. Please come back after 24 hours.</h2>
           </div>
         </div>
 
@@ -203,7 +203,7 @@ export default function Home() {
             
             <select value={imageValue} onChange={handleImageChange} className="drop-box">
               <option value=''>Select Image Example</option>
-              <option value='Twin persian cat playing in garden'>Twin persian cat playing in garden</option>
+              <option value='Illustration of jupiter clouds by dan mumford, blue planets, yellow tinted colors, uhd'>Illustration of jupiter clouds by dan mumford, blue planets, yellow tinted colors, uhd</option>
               <option value='Car sinking in water'>Car sinking in water</option>
               <option value='Burger with Double Cheese'>Burger with Double Cheese</option>
               <option value='A map of Poland with voting districts'>A map of Poland with voting districts</option>              
