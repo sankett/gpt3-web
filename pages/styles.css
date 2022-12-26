@@ -140,7 +140,7 @@ overflow-y: auto;
 }
 
 .divHeader {
-    font-size: 30px;
+    font-size: 20px;
     color: #d8d9e0;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
@@ -167,7 +167,7 @@ overflow-y: auto;
 }
 
 textarea {
-  width: 80%;
+  width: 90%;
   color: rgb(241, 230, 230);
   font-size: 14px;
 
