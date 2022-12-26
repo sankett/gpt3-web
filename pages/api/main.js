@@ -13,7 +13,7 @@ Write me a detailed table of contents for a blog post with the title below.
 
 Title:
 `
-const generateAction = async (req, res) => {
+const generateAction1 = async (req, res) => {
   // Run first prompt
   console.log(`API: ${basePromptPrefix}${req.body.userInput}`)
 
@@ -58,7 +58,7 @@ const generateAction = async (req, res) => {
   res.status(200).json({ first:basePromptOutput,  output: secondPromptOutput });
 };
 
-const generateAction1 = async (req, res) => {
+const generateAction = async (req, res) => {
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `${req.body.userInput}`,
