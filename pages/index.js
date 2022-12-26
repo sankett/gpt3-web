@@ -157,7 +157,7 @@ export default function Home() {
   const callGenerateBlog = async () => {
     
     let uniqueId1 = generateUniqueId()
-    addData(false,"Generate content:  " +userInput,uniqueId1);
+    addData(false,userInput,uniqueId1);
    
     setTimeout(async () => {
       let uniqueId2 = generateUniqueId()
