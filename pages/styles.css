@@ -19,8 +19,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  overflow-y: auto;
 }
-
+.scrollContainer {
+  height: 100%;
+  overflow-y:auto;
+}
 #chat_container {
   flex: 1;
   width: 100%;
@@ -42,7 +46,7 @@ body {
 
 .wrapper {
   width: 100%;
-  padding: 15px;
+  padding: 10px;
 }
 
 .ai {
@@ -58,7 +62,7 @@ overflow-y: auto;
   flex-direction: row;
   align-items: flex-start;
   gap: 10px;
-  height: 500px;
+  
 }
 
 .profile {
@@ -83,21 +87,16 @@ overflow-y: auto;
   object-fit: contain;
 }
 
-.message {
+.messagebot {
   flex: 1;
 
-  color: #ebc419;
-  font-size: 20px;
+  color: #fbfaf5;
+  font-size: 16px;
 
   max-width: 100%;
   overflow-x: scroll;
 
-  /*
-   * white space refers to any spaces, tabs, or newline characters that are used to format the CSS code
-   * specifies how white space within an element should be handled. It is similar to the "pre" value, which tells the browser to treat all white space as significant and to preserve it exactly as it appears in the source code.
-   * The pre-wrap value allows the browser to wrap long lines of text onto multiple lines if necessary.
-   * The default value for the white-space property in CSS is "normal". This tells the browser to collapse multiple white space characters into a single space, and to wrap text onto multiple lines as needed to fit within its container.
-  */
+  /*white-space:break-spaces;*/
   white-space: pre-wrap; 
 
   -ms-overflow-style: none;
@@ -105,23 +104,48 @@ overflow-y: auto;
 }
 
 /* hides scrollbar */
-.message::-webkit-scrollbar {
+.messagebot::-webkit-scrollbar {
+  display: none;
+}
+
+.messageuser {
+  flex: 1;
+
+  color: #ebc419;
+  font-size: 16px;
+
+  max-width: 100%;
+  overflow-x: scroll;
+
+  
+  white-space: pre-wrap; 
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* hides scrollbar */
+.messageuser::-webkit-scrollbar {
   display: none;
 }
 
 .divHeader {
     font-size: 30px;
     color: #d8d9e0;
-    text-align: center;
+    text-align: left;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #162ee2;
     width: 100%;
-    padding-top: 5px;
+    padding-top: 25px;
     padding-bottom: 5px;
+    height: 100px;
+    background-size: 100% 50%;
+    background-image: url("../assets/header.png");
+    padding-left: 10px;
 }
 .formclass {
   width: 100%;
-  max-width: 1280px;
+  /*max-width: 1280px;*/
   margin: 0 auto;
   padding: 10px;
   background: #40414F;
@@ -132,9 +156,9 @@ overflow-y: auto;
 }
 
 textarea {
-  width: 100%;
+  width: 80%;
   color: rgb(241, 230, 230);
-  font-size: 18px;
+  font-size: 14px;
 
   padding: 10px;
   background: transparent;
@@ -159,8 +183,9 @@ form img {
     color: white;
     background-color: black;
    padding: 10px;
-   padding-bottom: 20px;
+   padding-bottom: 25px;
     height: 30px;
+    border-radius: 5px;
 }
 
 /* width */
