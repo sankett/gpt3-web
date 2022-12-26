@@ -140,7 +140,7 @@ overflow-y: auto;
     padding-bottom: 5px;
     height: 100px;
     background-size: 100% 50%;
-    background-image: url("../assets/header.png");
+    background-image: url("header.png");
     padding-left: 10px;
 }
 .formclass {
