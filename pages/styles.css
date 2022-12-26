@@ -11,6 +11,16 @@ body {
   background: #343541;
 }
 
+.spanheaderLeft {
+  float: left;
+  width: 50%;
+}
+
+.spanheaderRight {
+  float: left;
+  width: 50%;
+  margin-top: -40px;
+}
 #app {
   width: 100vw;
   height: 100vh;
@@ -134,13 +144,14 @@ overflow-y: auto;
     color: #d8d9e0;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #162ee2;
+    
     width: 100%;
     padding-top: 25px;
     padding-bottom: 5px;
-    height: 100px;
-    background-size: 100% 50%;
-    background-image: url("header.png");
+    height: 70px;
+    /*background-size: 100% 50%;
+    background-image: url("header.png");*/
+    background-image: linear-gradient(rgb(11, 21, 37), rgb(72, 215, 132));
     padding-left: 10px;
 }
 .formclass {

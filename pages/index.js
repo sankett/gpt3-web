@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import bot from '../assets/bot.svg'
 import user from '../assets/user.svg'
-import send from '../assets/send.svg'
+import header from '../assets/header.png'
 import { useState, useEffect,useRef  } from 'react';
 
 
@@ -207,7 +207,9 @@ setListChatStripe([])
   }
   return (
     <div id="app">
-      <div className='divHeader'>Sanket's GPTChat showcase</div>
+      <div className='divHeader'>
+      Sanket's GPTChat showcase
+        </div>
     <div id="chat_container">
       <div className='scrollContainer'>
       {
