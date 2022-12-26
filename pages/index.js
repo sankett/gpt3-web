@@ -225,9 +225,9 @@ setListChatStripe([])
 
     <div className='formclass'>
        
-      <textarea name="prompt" rows="1" cols="1" placeholder="Ask me..."
-      value={userInput} onChange={onUserChangedText}
-      ></textarea>
+      <input type={text} name="prompt" rows="1" cols="1" placeholder="Ask me..."
+      value={userInput} onChange={onUserChangedText} className="inputtext"
+      />
         <button type="button" onClick={callGenerateBlog} className='btnReset'>
           Go
         </button>

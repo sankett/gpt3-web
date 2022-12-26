@@ -178,6 +178,18 @@ textarea {
   outline: none;
 }
 
+.inputtext {
+  width: 90%;
+  color: rgb(241, 230, 230);
+  font-size: 14px;
+
+  padding: 10px;
+  background: transparent;
+  border-radius: 5px;
+  border: 1px solid white;
+  outline: none;
+}
+
 button {
   outline: 0;
   border: 0;
