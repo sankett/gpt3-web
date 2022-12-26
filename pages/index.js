@@ -207,7 +207,7 @@ setListChatStripe([])
   }
   return (
     <div id="app">
-      <div className='divHeader'>Sanket's GPT3 AI showcase</div>
+      <div className='divHeader'>Sanket's GPTChat showcase</div>
     <div id="chat_container">
       <div className='scrollContainer'>
       {
