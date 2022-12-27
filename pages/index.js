@@ -22,7 +22,7 @@ function ChartStripe(props) {
 export default function Home() {
   const [textContent, setTextContent] = useState('');
   const [text, setText] = useState('');
-  const [userInput, setUserInput] = useState(`Compare React.JS, Angular and Vue.JS in terms of DOM`);
+  const [userInput, setUserInput] = useState(`Top 5 headline for Food blog`);
 
   const [isAi, setIsAi] = useState(false);
   const [textValue, setTextValue] = useState('');
