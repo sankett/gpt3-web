@@ -22,7 +22,7 @@ body {
   margin-top: -40px;
 }
 #app {
-  width: 100vw;
+  width: 99vw;
   height: 90vh;
   background: #343541;
   display: flex;
@@ -99,9 +99,10 @@ overflow-y: auto;
 
 .messagebot {
   flex: 1;
-
+  letter-spacing: -0.5px;
+  font-family: 'Manrope', sans-serif;
   color: #fbfaf5;
-  font-size: 16px;
+  font-size: 20px;
 
   max-width: 100%;
   overflow-x: scroll;
@@ -120,9 +121,10 @@ overflow-y: auto;
 
 .messageuser {
   flex: 1;
-
+  letter-spacing: -0.5px;
+  font-family: 'Manrope', sans-serif;
   color: #ebc419;
-  font-size: 16px;
+  font-size: 20px;
 
   max-width: 100%;
   overflow-x: scroll;
@@ -181,7 +183,7 @@ textarea {
 .inputtext {
   width: 90%;
   color: rgb(241, 230, 230);
-  font-size: 14px;
+  font-size: 16px;
 
   padding: 10px;
   background: transparent;
@@ -209,6 +211,7 @@ form img {
    padding-bottom: 25px;
     height: 30px;
     border-radius: 5px;
+    font-size: 18px;
 }
 
 /* width */
