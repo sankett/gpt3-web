@@ -246,7 +246,7 @@ setListChatStripe([])
       </div>
     <div className='formclass'>
     
-      <input type={text} name="prompt" rows="1" cols="1" placeholder="Ask me (minimum length 15)..."
+      <input type={text} name="prompt" rows="1" cols="1" placeholder="Ask me (min. length 15)..."
       value={userInput} onChange={onUserChangedText} className="inputtext"
       />
         <button type="button" onClick={callGenerateBlog} 
