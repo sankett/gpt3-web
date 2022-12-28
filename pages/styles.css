@@ -76,8 +76,8 @@ overflow-y: auto;
 }
 
 .profile {
-  width: 36px;
-  height: 36px;
+  width: 22px;
+  height: 22px;
   border-radius: 5px;
 
   background: #5436DA;
@@ -100,9 +100,9 @@ overflow-y: auto;
 .messagebot {
   flex: 1;
   letter-spacing: -0.5px;
-  font-family: 'Manrope', sans-serif;
+  font-family:'Courier New', Courier, monospace;
   color: #fbfaf5;
-  font-size: 20px;
+  font-size: 16px;
 
   max-width: 100%;
   overflow-x: scroll;
@@ -121,10 +121,10 @@ overflow-y: auto;
 
 .messageuser {
   flex: 1;
-  letter-spacing: -0.5px;
-  font-family: 'Manrope', sans-serif;
-  color: #ebc419;
-  font-size: 20px;
+  letter-spacing: -0.1px;
+  font-family:'Courier New', Courier, monospace;
+  color: #e9e773;
+  font-size: 16px;
 
   max-width: 100%;
   overflow-x: scroll;
@@ -140,17 +140,20 @@ overflow-y: auto;
 .messageuser::-webkit-scrollbar {
   display: none;
 }
-
+.subspan {
+  font-size: 16px;
+  color:yellow;
+}
 .divHeader {
-    font-size: 24px;
+    font-size: 20px;
     color: #d8d9e0;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
     
     width: 100%;
-    padding-top: 25px;
-    padding-bottom: 5px;
-    height: 70px;
+    padding-top: 20px;
+    padding-bottom: 1px;
+    height: 50px;
     /*background-size: 100% 50%;
     background-image: url("header.png");*/
     background-image: linear-gradient(rgb(11, 21, 37), rgb(72, 215, 132));
@@ -184,7 +187,7 @@ textarea {
   width: 90%;
   color: rgb(241, 230, 230);
   font-size: 16px;
-
+  font-family:'Courier New', Courier, monospace;
   padding: 10px;
   background: transparent;
   border-radius: 5px;

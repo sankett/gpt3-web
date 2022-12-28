@@ -12,7 +12,7 @@ function ChartStripe(props) {
     <div className={props.isAi ? 'wrapper ai' : 'wrapper'} key={props.uniqueId}>
        <div className="chat">
           <div className="profile">
-            <Image src={props.isAi ? bot : user} alt={props.isAi ? 'bot' : 'user'} />
+            <Image src={props.isAi ? bot : user} alt={props.isAi ? 'bot' : 'user'}  />
           </div>
           <div className={props.isAi ? 'messagebot' : 'messageuser'} id={props.uniqueId}> {props.value}</div>
       </div>
@@ -102,15 +102,15 @@ export default function Home() {
   }
 
  const loader = (uniqueId) => {
-      let textContent = 'Wait'
+      let textContent = "Hold on, we're waiting for the server to respond. This shouldn't take too long";
       addData(true,textContent,uniqueId);
       loadInterval = setInterval(() => {
           // Update the text content of the loading indicator
           textContent += '.';
 
           // If the loading indicator has reached three dots, reset it
-          if (textContent === 'Wait....') {
-              textContent = 'Wait';
+          if (textContent === "Hold on, we're waiting for the server to respond. This shouldn't take too long....") {
+              textContent = "Hold on, we're waiting for the server to respond. This shouldn't take too long";
           }
           updateData(textContent,uniqueId)
 
@@ -126,7 +126,8 @@ export default function Home() {
       
 
       loader(uniqueId2)
-      const response = await fetch('/api/codegen', {
+      
+       response = await fetch('/api/codegen', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -164,20 +165,35 @@ export default function Home() {
       
 
       loader(uniqueId2)
-      const response = await fetch('/api/main', {
+      let response = await fetch('/api/moderation', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ userInput }),
-      });
-  
-      clearInterval(loadInterval);
-      const data = await response.json();
-      const { output, first } = data;
-      //typeText1(first.text.replace("\n\n",""),uniqueId2)
+      })
+      const resp = await response.json(); 
+      console.log("==resp",resp) ;
+      if(resp.flagged){
+        clearInterval(loadInterval);
+        typeText1("Invalid prompt. Violates Content Policy",uniqueId2)
+      }else{
+        response = await fetch('/api/main', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userInput }),
+        });
+    
+        clearInterval(loadInterval);
+        const data = await response.json();
+        const { output, first } = data;
+        //typeText1(first.text.replace("\n\n",""),uniqueId2)
+        
+        typeText1(output.text.replace("\n\n",""),uniqueId2)
+      }
       
-      typeText1(output.text.replace("\n\n",""),uniqueId2)
       
 
     }, 50) 
@@ -208,7 +224,7 @@ setListChatStripe([])
   return (
     <div id="app">
       <div className='divHeader'>
-      Sanket's GPTChat showcase
+      Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
         </div>
     <div id="chat_container">
       <div className='scrollContainer'>
