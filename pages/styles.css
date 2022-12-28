@@ -163,13 +163,40 @@ overflow-y: auto;
   width: 100%;
   /*max-width: 1280px;*/
   margin: 0 auto;
-  padding: 10px;
+  padding: 5px;
   background: #40414F;
 
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
+
+.formclass1 {
+  width: 100%;
+  /*max-width: 1280px;*/
+  margin: 0 auto;
+  padding: 5px;
+  background: #40414F;
+color: orange;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.formclass1span1{
+  color: orange;
+}
+
+.formclass1span2{
+  color: teal;
+}
+
+.formclass1span3{
+  color: violet;
+}
+
 
 textarea {
   width: 90%;
@@ -205,6 +232,11 @@ button {
 form img {
   width: 30px;
   height: 30px;
+}
+
+.btndisabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btnReset {

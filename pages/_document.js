@@ -5,7 +5,7 @@ export default function Document() {
     <Html>
       <Head>
         <meta property="og:title" content="ChatGPT - OpenAI" key="title"/>
-        <meta property="og:description" content="This a demo of ChatGPT capabilities" key="description"/>
+        <meta property="og:description" content="Click here for Demo" key="description"/>
         <meta
           property="og:image"
           content="https://storybook7.blob.core.windows.net/images/ai.png"

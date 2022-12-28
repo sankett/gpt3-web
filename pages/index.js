@@ -22,7 +22,7 @@ function ChartStripe(props) {
 export default function Home() {
   const [textContent, setTextContent] = useState('');
   const [text, setText] = useState('');
-  const [userInput, setUserInput] = useState(`Top 5 headline for Food blog`);
+  const [userInput, setUserInput] = useState("");
 
   const [isAi, setIsAi] = useState(false);
   const [textValue, setTextValue] = useState('');
@@ -239,13 +239,18 @@ setListChatStripe([])
     
     </div>
 
+    <div className='formclass1'>
+      <span className='formclass1span1'>Examples:</span><span className='formclass1span2'> Top 5 headline for Food blog</span> , <span className='formclass1span3'>JavaScript function to convert JSON to CSV</span>
+      </div>
     <div className='formclass'>
-       
-      <input type={text} name="prompt" rows="1" cols="1" placeholder="Ask me..."
+    
+      <input type={text} name="prompt" rows="1" cols="1" placeholder="Ask me (minimum length 15)..."
       value={userInput} onChange={onUserChangedText} className="inputtext"
       />
-        <button type="button" onClick={callGenerateBlog} className='btnReset'>
-          Go
+        <button type="button" onClick={callGenerateBlog} 
+        className={userInput.length > 15 ? 'btnReset' : 'btnReset btndisabled'}
+        >
+          Go ({userInput.length})
         </button>
 
         <button className='btnReset' onClick={reset}> Reset</button>
