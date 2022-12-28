@@ -240,7 +240,9 @@ setListChatStripe([])
     </div>
 
     <div className='formclass1'>
-      <span className='formclass1span1'>Examples:</span><span className='formclass1span2'> Top 5 headline for Food blog</span> , <span className='formclass1span3'>JavaScript function to convert JSON to CSV</span>
+      <span className='formclass1span1'>Examples:</span>
+      <span className='formclass1span2'> Top 5 headline for Food blog</span> 
+       
       </div>
     <div className='formclass'>
     
@@ -250,7 +252,7 @@ setListChatStripe([])
         <button type="button" onClick={callGenerateBlog} 
         className={userInput.length > 15 ? 'btnReset' : 'btnReset btndisabled'}
         >
-          Go ({userInput.length})
+          Go 
         </button>
 
         <button className='btnReset' onClick={reset}> Reset</button>
