@@ -29,7 +29,7 @@ function ChartStripe(props) {
 export default function Home() {
   const [textContent, setTextContent] = useState('');
   const [text, setText] = useState('');
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState("Resume of 6 years experience AWS DevOps");
 
   const [isAi, setIsAi] = useState(false);
   const [textValue, setTextValue] = useState('');
