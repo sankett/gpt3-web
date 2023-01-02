@@ -226,20 +226,7 @@ setListChatStripe([])
       <div className='divHeader'>
       Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
         </div>
-    <div id="chat_container">
-      <div className='scrollContainer'>
-      {
-        listChatStripe.map(data => {
-        
-          return <ChartStripe key={data.uniqueId} value={data.textValue} isAi={data.isAi} uniqueId={data.uniqueId} />
-        })
-      }
-       <div ref={bottomRef} />
-     </div>
-    
-    </div>
-
-    <div className='formclass1'>
+      <div className='formclass1'>
       <span className='formclass1span1'>Examples:</span>
       <span className='formclass1span2'> Top 5 headline for Food blog</span> 
        
@@ -257,6 +244,21 @@ setListChatStripe([])
 
         <button className='btnReset' onClick={reset}> Reset</button>
         </div>
+      
+    <div id="chat_container">
+      <div className='scrollContainer'>
+      {
+        listChatStripe.map(data => {
+        
+          return <ChartStripe key={data.uniqueId} value={data.textValue} isAi={data.isAi} uniqueId={data.uniqueId} />
+        })
+      }
+       <div ref={bottomRef} />
+     </div>
+    
+    </div>
+
+    
   </div>
   );
 }
