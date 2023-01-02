@@ -270,13 +270,13 @@ setListChatStripe([])
       <div className='formclass1'>
      
        <span className='formclass1span1'>
-       <input type="radio" value={1} name="category" onChange={onRadioChanged} checked= {category === 1}/> Summary Content
+       <input type="radio" value={1} name="category" onChange={onRadioChanged} checked= {category === 1}/> Summary
        </span><span className='formclass1span1'>
-        <input type="radio" value={2} name="category" onChange={onRadioChanged} checked= {category === 2}/> Blog Content
+        <input type="radio" value={2} name="category" onChange={onRadioChanged} checked= {category === 2}/> Blog
         </span><span className='formclass1span1'>
-        <input type="radio" value={3} name="category" onChange={onRadioChanged} checked= {category === 3}/> Generate Code
+        <input type="radio" value={3} name="category" onChange={onRadioChanged} checked= {category === 3}/> Code
         </span><span className='formclass1span1'>
-        <input type="radio" value={4} name="category" onChange={onRadioChanged} checked= {category === 4}/> Generate Image
+        <input type="radio" value={4} name="category" onChange={onRadioChanged} checked= {category === 4}/> Image
        </span>
       </div>
     <div className='formclass'>
