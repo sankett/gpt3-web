@@ -207,6 +207,7 @@ export default function Home() {
         }
         else{
           typeText1(output.text.replace("\n\n",""),uniqueId2)
+          
         }
         
       }
@@ -226,11 +227,26 @@ export default function Home() {
 
   const onRadioChanged = (event) => {    
     
+    let textBoxValue ='';
     const inputdata = parseInt(event.target.value)
+    if(inputdata === 3){
+      textBoxValue= "# JavaScript language\n# create array of users and assign it to variable users\n# create function getUserById with parameter id and return user\n# create function to sort users by age"
+    }
+    else if(inputdata === 4) {
+      textBoxValue = 'Blue vibrant high quality eagle logo Clipart'
+    }
+    else if(inputdata === 2) {
+      textBoxValue = 'Step by Step learn Blockchain'
+    }
+    else{
+      textBoxValue = 'Resume of 6 years experience AWS DevOps'
+    }
+    //const textBoxValue = inputdata === 3 ? `# JavaScript language\n# create array of users and assign it to variable users\n# create function getUserById with parameter id and return user\n# create function to sort users by age` : "";
+
     setCategory(inputdata)
     setTextValue('')
     setIsAi(false)
-    setUserInput('');
+    setUserInput(textBoxValue);
   }
   useEffect(() => {
     
@@ -265,9 +281,12 @@ setListChatStripe([])
       </div>
     <div className='formclass'>
     
-      <input type={text} name="prompt" rows="1" cols="1" placeholder="Ask me (min. length 15)..."
-      value={userInput} onChange={onUserChangedText} className="inputtext"
-      />
+      <textarea
+            className="inputtext" rows="4" cols="1" 
+            placeholder="Ask me (min. length 15)..."
+            value={userInput}
+            onChange={onUserChangedText}
+          />
         <button type="button" onClick={callGenerateBlog} 
         className={userInput.length > 15 ? 'btnReset' : 'btnReset btndisabled'}
         >
