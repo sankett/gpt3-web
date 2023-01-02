@@ -14,7 +14,14 @@ function ChartStripe(props) {
           <div className="profile">
             <Image src={props.isAi ? bot : user} alt={props.isAi ? 'bot' : 'user'}  />
           </div>
-          <div className={props.isAi ? 'messagebot' : 'messageuser'} id={props.uniqueId}> {props.value}</div>
+          <div className={props.isAi ? 'messagebot' : 'messageuser'} id={props.uniqueId}> 
+          
+
+          {
+            props.isImage && props.value.toString().indexOf("http") > -1 ? (<img src={props.value} alt={props.isAi ? 'bot' : 'user'}  />) : props.value
+          }
+          
+          </div>
       </div>
     </div>
   )
@@ -29,6 +36,7 @@ export default function Home() {
   const [uniqueId, setUniqueId] = useState('');
 
   const [stateTextAtIndex, setstateTextAtIndex] = useState('');
+  const [category, setCategory] = useState(1);
 
   const bottomRef = useRef(null);
 
@@ -79,12 +87,13 @@ export default function Home() {
     }, 15)
   }
 
-  const addData = (isAi, textValue, uniqueId) => {
+  const addData = (isAi, textValue, uniqueId, isImage) => {
     temp = {
       key: uniqueId,
       isAi: isAi,
       textValue: textValue,
-      uniqueId:uniqueId
+      uniqueId:uniqueId,
+      isImage: isImage
     }
     setListChatStripe(oldArray => [...oldArray, temp]);
   }
@@ -103,7 +112,8 @@ export default function Home() {
 
  const loader = (uniqueId) => {
       let textContent = "Hold on, we're waiting for the server to respond. This shouldn't take too long";
-      addData(true,textContent,uniqueId);
+      const isImageData = category === 4 ? true : false;
+      addData(true,textContent,uniqueId,isImageData);
       loadInterval = setInterval(() => {
           // Update the text content of the loading indicator
           textContent += '.';
@@ -119,7 +129,7 @@ export default function Home() {
 
   const callGenerateCode = async () => {
     let uniqueId1 = generateUniqueId()
-    addData(false,"Generate code:" + userInput,uniqueId1);
+    addData(false,"Generate code:" + userInput,uniqueId1,false);
 
     setTimeout(async () => {
       let uniqueId2 = generateUniqueId()
@@ -158,7 +168,7 @@ export default function Home() {
   const callGenerateBlog = async () => {
     
     let uniqueId1 = generateUniqueId()
-    addData(false,userInput,uniqueId1);
+    addData(false,userInput,uniqueId1,false);
    
     setTimeout(async () => {
       let uniqueId2 = generateUniqueId()
@@ -178,7 +188,9 @@ export default function Home() {
         clearInterval(loadInterval);
         typeText1("Invalid prompt. Violates Content Policy",uniqueId2)
       }else{
-        response = await fetch('/api/main', {
+        let defaultApi =  category === 1 ? '/api/main' : category === 2 ? '/api/detail' : category === 3 ? '/api/codegen' : '/api/imagegen';
+
+        response = await fetch(defaultApi, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -190,8 +202,13 @@ export default function Home() {
         const data = await response.json();
         const { output, first } = data;
         //typeText1(first.text.replace("\n\n",""),uniqueId2)
+        if(category === 4){
+          updateData(output,uniqueId2)
+        }
+        else{
+          typeText1(output.text.replace("\n\n",""),uniqueId2)
+        }
         
-        typeText1(output.text.replace("\n\n",""),uniqueId2)
       }
       
       
@@ -207,6 +224,14 @@ export default function Home() {
     setUserInput(event.target.value);
   }
 
+  const onRadioChanged = (event) => {    
+    
+    const inputdata = parseInt(event.target.value)
+    setCategory(inputdata)
+    setTextValue('')
+    setIsAi(false)
+    setUserInput('');
+  }
   useEffect(() => {
     
     bottomRef.current?.scrollIntoView({
@@ -227,9 +252,16 @@ setListChatStripe([])
       Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
         </div>
       <div className='formclass1'>
-      <span className='formclass1span1'>Examples:</span>
-      <span className='formclass1span2'> Top 5 headline for Food blog</span> 
-       
+     
+       <span className='formclass1span1'>
+       <input type="radio" value={1} name="category" onChange={onRadioChanged} checked= {category === 1}/> Summary
+       </span><span className='formclass1span1'>
+        <input type="radio" value={2} name="category" onChange={onRadioChanged} checked= {category === 2}/> Detail
+        </span><span className='formclass1span1'>
+        <input type="radio" value={3} name="category" onChange={onRadioChanged} checked= {category === 3}/> Code
+        </span><span className='formclass1span1'>
+        <input type="radio" value={4} name="category" onChange={onRadioChanged} checked= {category === 4}/> Image
+       </span>
       </div>
     <div className='formclass'>
     
@@ -250,7 +282,7 @@ setListChatStripe([])
       {
         listChatStripe.map(data => {
         
-          return <ChartStripe key={data.uniqueId} value={data.textValue} isAi={data.isAi} uniqueId={data.uniqueId} />
+          return <ChartStripe key={data.uniqueId} value={data.textValue} isAi={data.isAi} uniqueId={data.uniqueId} isImage={data.isImage} />
         })
       }
        <div ref={bottomRef} />

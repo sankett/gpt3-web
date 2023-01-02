@@ -181,8 +181,8 @@ color: orange;
   display: flex;
   flex-direction: row;
   gap: 10px;
-  font-style: italic;
-  font-size: 14px;
+  font-style:initial;
+  font-size: 15px;
 }
 
 .formclass1span1{

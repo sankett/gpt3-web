@@ -9,12 +9,12 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 const generateImage = async (req, res) => {
     const response = await openai.createImage({
-        prompt: `${req.body.imageInput}`,
+        prompt: `${req.body.userInput}`,
         n: 1,
-        size: "512x512",
+        size: "256x256",
       });
       const imageUrl = response.data.data[0].url;
       
-      res.status(200).json({ imageUrl });
+      res.status(200).json({ output: imageUrl });
 };
 export default generateImage
