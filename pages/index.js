@@ -334,8 +334,7 @@ export default function Home() {
 
   }
   
-  
-  return (
+   return (
       <div id="app">
         <div className='divHeader'>
           Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
