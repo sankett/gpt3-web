@@ -265,8 +265,8 @@ export default function Home() {
   }
 
   const googleSignin =async () =>{
-    //signIn('google', { callbackUrl: "http://localhost:3000/" })
-    signIn('google')
+    signIn('google', { callbackUrl: "https://gpt3-web-production.up.railway.app/" })
+    //signIn('google')
   }
 
   const googleSignout =async () =>{
