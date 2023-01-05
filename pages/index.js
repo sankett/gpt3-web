@@ -4,7 +4,7 @@ import bot from '../assets/bot.svg'
 import user from '../assets/user.svg'
 import header from '../assets/header.png'
 import { useState, useEffect,useRef  } from 'react';
-
+import { useSession, signIn, signOut } from "next-auth/react"
 
 function ChartStripe(props) {
   
@@ -27,6 +27,7 @@ function ChartStripe(props) {
   )
 }
 export default function Home() {
+  const { data: session } = useSession();
   const [textContent, setTextContent] = useState('');
   const [text, setText] = useState('');
   const [userInput, setUserInput] = useState("Resume of 6 years experience AWS DevOps");
@@ -259,57 +260,95 @@ export default function Home() {
     setTextValue('')
     setIsAi(false)
     setUserInput('');
-setListChatStripe([])
+    setListChatStripe([])
    
   }
-  return (
-    <div id="app">
-      <div className='divHeader'>
-      Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
-        </div>
-      <div className='formclass1'>
-     
-       <span className='formclass1span1'>
-       <input type="radio" value={1} name="category" onChange={onRadioChanged} checked= {category === 1}/> Summary
-       </span><span className='formclass1span1'>
-        <input type="radio" value={2} name="category" onChange={onRadioChanged} checked= {category === 2}/> Blog
-        </span><span className='formclass1span1'>
-        <input type="radio" value={3} name="category" onChange={onRadioChanged} checked= {category === 3}/> Code
-        </span><span className='formclass1span1'>
-        <input type="radio" value={4} name="category" onChange={onRadioChanged} checked= {category === 4}/> Image
-       </span>
-      </div>
-    <div className='formclass'>
-    
-      <textarea
-            className="inputtext" rows="4" cols="1" 
-            placeholder="Ask me (min. length 15)..."
-            value={userInput}
-            onChange={onUserChangedText}
-          />
-        <button type="button" onClick={callGenerateBlog} 
-        className={userInput.length > 15 ? 'btnReset' : 'btnReset btndisabled'}
-        >
-          Go 
-        </button>
 
-        <button className='btnReset' onClick={reset}> Reset</button>
-        </div>
-      
-    <div id="chat_container">
-      <div className='scrollContainer'>
-      {
-        listChatStripe.map(data => {
+  const googleSignin =async () =>{
+    //signIn('google', { callbackUrl: "http://localhost:3000/" })
+    signIn('google')
+  }
+
+  const googleSignout =async () =>{
+    signOut()
+  }
+
+  if (session) {
+
+      return (
+        <div id="app">
+          <div className='divHeader'>
+          Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
+          <span className='signinSpan'>
+          <button onClick={googleSignout}>
+            <span className='nameSpan'>{session.user.name}</span>&nbsp;
+            <span className='signoutButton'>Sign out</span>
+            </button>
+          </span>
+            </div>
+          <div className='formclass1'>
         
-          return <ChartStripe key={data.uniqueId} value={data.textValue} isAi={data.isAi} uniqueId={data.uniqueId} isImage={data.isImage} />
-        })
-      }
-       <div ref={bottomRef} />
-     </div>
-    
-    </div>
+          <span className='formclass1span1'>
+          <input type="radio" value={1} name="category" onChange={onRadioChanged} checked= {category === 1}/> Summary
+          </span><span className='formclass1span1'>
+            <input type="radio" value={2} name="category" onChange={onRadioChanged} checked= {category === 2}/> Blog
+            </span><span className='formclass1span1'>
+            <input type="radio" value={3} name="category" onChange={onRadioChanged} checked= {category === 3}/> Code
+            </span><span className='formclass1span1'>
+            <input type="radio" value={4} name="category" onChange={onRadioChanged} checked= {category === 4}/> Image
+          </span>
+          </div>
+        <div className='formclass'>
+        
+          <textarea
+                className="inputtext" rows="4" cols="1" 
+                placeholder="Ask me (min. length 15)..."
+                value={userInput}
+                onChange={onUserChangedText}
+              />
+            <button type="button" onClick={callGenerateBlog} 
+            className={userInput.length > 15 ? 'btnReset' : 'btnReset btndisabled'}
+            >
+              Go 
+            </button>
 
-    
-  </div>
-  );
+            <button className='btnReset' onClick={reset}> Reset</button>
+            </div>
+          
+        <div id="chat_container">
+          <div className='scrollContainer'>
+          {
+            listChatStripe.map(data => {
+            
+              return <ChartStripe key={data.uniqueId} value={data.textValue} isAi={data.isAi} uniqueId={data.uniqueId} isImage={data.isImage} />
+            })
+          }
+          <div ref={bottomRef} />
+        </div>
+        
+        </div>
+
+        
+      </div>
+      );
+
+  }
+  
+  return (
+      <div id="app">
+        <div className='divHeader'>
+          Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
+        </div>
+        <div className='formclass0'>
+          
+        <button onClick={googleSignin} >
+          <span className="signinButton">Google Sign in</span>
+          </button>
+        </div>
+        <div id="chat_container">
+          &nbsp;
+        </div>
+      </div>
+  )
+
 }

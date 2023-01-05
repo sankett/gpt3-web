@@ -171,6 +171,47 @@ overflow-y: auto;
   gap: 10px;
 }
 
+.formclass0 {
+  width: 30%;
+  /*max-width: 1280px;*/
+  margin: 0 auto;
+  padding: 5px;
+  background: #40414F;
+color: orange;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  font-style:initial;
+  font-size: 16px;
+  padding-top: 15px;
+  padding-left: 10%;
+}
+.signinSpan {
+  float: right;
+  margin-right: 10px;
+  color: white;
+  font-size: 20px;
+}
+.signoutButton {
+  color: white;
+  font-size: 16px;
+  font-style: underline;
+  text-decoration: underline;
+}
+
+.nameSpan {
+  color: yellow;
+  font-size: 16px;
+  font-style: underline;
+  margin-right: 10px;
+}
+
+.signinButton {
+  color: white;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
 .formclass1 {
   width: 100%;
   /*max-width: 1280px;*/
