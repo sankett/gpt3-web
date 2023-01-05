@@ -281,7 +281,7 @@ export default function Home() {
           Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
           <span className='signinSpan'>
           <button onClick={googleSignout}>
-            <span className='nameSpan'>{session.user.name}</span>&nbsp;
+            <span className='nameSpan'>{"session.user.name"}</span>&nbsp;
             <span className='signoutButton'>Sign out</span>
             </button>
           </span>
@@ -333,6 +333,8 @@ export default function Home() {
       );
 
   }
+  else {
+
   
    return (
       <div id="app">
@@ -350,5 +352,6 @@ export default function Home() {
         </div>
       </div>
   )
+   }
 
 }
