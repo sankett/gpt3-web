@@ -9,10 +9,10 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 const generateCode = async (req, res) => {
     const response = await openai.createCompletion({
-        model: "text-davinci-003",
+        model: "code-davinci-002",//"text-davinci-003",//
         prompt: `${req.body.userInput}`,
-        temperature: 0,//0.7,
-        max_tokens: 256,//735,
+        temperature: 0,
+        max_tokens: req.body.maxToken,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,

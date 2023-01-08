@@ -4,7 +4,7 @@ import bot from '../assets/bot.svg'
 import user from '../assets/user.svg'
 import header from '../assets/header.png'
 import { useState, useEffect,useRef  } from 'react';
-import { useSession, signIn, signOut } from "next-auth/react"
+
 
 function ChartStripe(props) {
   
@@ -27,7 +27,7 @@ function ChartStripe(props) {
   )
 }
 export default function Home() {
-  const { data: session } = useSession();
+  const [maxToken, setTokenTextContent] = useState(256);
   const [textContent, setTextContent] = useState('');
   const [text, setText] = useState('');
   const [userInput, setUserInput] = useState("Resume of 6 years experience AWS DevOps");
@@ -167,9 +167,13 @@ export default function Home() {
   }
 
   const callGenerateBlog = async () => {
-    
-    let uniqueId1 = generateUniqueId()
-    addData(false,userInput,uniqueId1,false);
+    console.log(maxToken)
+    setTextValue('')
+    setIsAi(false)
+    //setUserInput('');
+setListChatStripe([])
+    //let uniqueId1 = generateUniqueId()
+    //addData(false,userInput,uniqueId1,false);
    
     setTimeout(async () => {
       let uniqueId2 = generateUniqueId()
@@ -196,7 +200,7 @@ export default function Home() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ userInput }),
+          body: JSON.stringify({ userInput , maxToken: parseInt(maxToken) }),
         });
     
         clearInterval(loadInterval);
@@ -226,6 +230,12 @@ export default function Home() {
     setUserInput(event.target.value);
   }
 
+  const onTokenChangedText = (event) => {    
+    
+    setTokenTextContent(event.target.value);
+  }
+
+  
   const onRadioChanged = (event) => {    
     
     let textBoxValue ='';
@@ -260,99 +270,65 @@ export default function Home() {
     setTextValue('')
     setIsAi(false)
     setUserInput('');
-    setListChatStripe([])
+setListChatStripe([])
    
   }
-
-  const googleSignin =async () =>{
-    signIn('google', { callbackUrl: "https://gpt3-web-production.up.railway.app/" })
-    //signIn('google')
-    //signIn()
-  }
-
-  const googleSignout =async () =>{
-    signOut()
-  }
-
-  if (session) {
-
-      return (
-        <div id="app">
-          <div className='divHeader'>
-          Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
-          <span className='signinSpan'>
-          <button onClick={googleSignout}>
-            <span className='nameSpan'>{"session.user.name"}</span>&nbsp;
-            <span className='signoutButton'>Sign out</span>
-            </button>
-          </span>
-            </div>
-          <div className='formclass1'>
-        
-          <span className='formclass1span1'>
-          <input type="radio" value={1} name="category" onChange={onRadioChanged} checked= {category === 1}/> Summary
-          </span><span className='formclass1span1'>
-            <input type="radio" value={2} name="category" onChange={onRadioChanged} checked= {category === 2}/> Blog
-            </span><span className='formclass1span1'>
-            <input type="radio" value={3} name="category" onChange={onRadioChanged} checked= {category === 3}/> Code
-            </span><span className='formclass1span1'>
-            <input type="radio" value={4} name="category" onChange={onRadioChanged} checked= {category === 4}/> Image
-          </span>
-          </div>
-        <div className='formclass'>
-        
-          <textarea
-                className="inputtext" rows="4" cols="1" 
-                placeholder="Ask me (min. length 15)..."
-                value={userInput}
-                onChange={onUserChangedText}
-              />
-            <button type="button" onClick={callGenerateBlog} 
-            className={userInput.length > 15 ? 'btnReset' : 'btnReset btndisabled'}
-            >
-              Go 
-            </button>
-
-            <button className='btnReset' onClick={reset}> Reset</button>
-            </div>
-          
-        <div id="chat_container">
-          <div className='scrollContainer'>
-          {
-            listChatStripe.map(data => {
-            
-              return <ChartStripe key={data.uniqueId} value={data.textValue} isAi={data.isAi} uniqueId={data.uniqueId} isImage={data.isImage} />
-            })
-          }
-          <div ref={bottomRef} />
+  return (
+    <div id="app">
+      <div className='divHeader'>
+      Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
         </div>
-        
-        </div>
-
-        
+      <div className='formclass1'>
+     
+       <span className='formclass1span1'>
+       <input type="radio" value={1} name="category" onChange={onRadioChanged} checked= {category === 1}/> Summary
+       </span><span className='formclass1span1'>
+        <input type="radio" value={2} name="category" onChange={onRadioChanged} checked= {category === 2}/> Blog
+        </span><span className='formclass1span1'>
+        <input type="radio" value={3} name="category" onChange={onRadioChanged} checked= {category === 3}/> Code
+        </span><span className='formclass1span1'>
+        <input type="radio" value={4} name="category" onChange={onRadioChanged} checked= {category === 4}/> Image
+       </span>
+       &nbsp;&nbsp;
+       <span>
+       <input type={Number}
+            className="inputtext1"             
+            value={maxToken}
+            onChange={onTokenChangedText}
+          />
+       </span>
       </div>
-      );
+    <div className='formclass'>
+    
+      <textarea
+            className="inputtext" rows="4" cols="1" 
+            placeholder="Ask me (min. length 15)..."
+            value={userInput}
+            onChange={onUserChangedText}
+          />
+        <button type="button" onClick={callGenerateBlog} 
+        className={userInput.length > 15 ? 'btnReset' : 'btnReset btndisabled'}
+        >
+          Go 
+        </button>
 
-  }
-  else {
+        <button className='btnReset' onClick={reset}> Reset</button>
+        </div>
+      
+    <div id="chat_container">
+      <div className='scrollContainer'>
+      {
+        listChatStripe.map(data => {
+        
+          return <ChartStripe key={data.uniqueId} value={data.textValue} isAi={data.isAi} uniqueId={data.uniqueId} isImage={data.isImage} />
+        })
+      }
+       <div ref={bottomRef} />
+     </div>
+    
+    </div>
 
-  
-   return (
-      <div id="app">
-        <div className='divHeader'>
-          Sanket's GPTChat showcase <span className='subspan'><sub>Powered by Next.JS</sub></span>
-        </div>
-        <div className='formclass0'>
-          
-        <button onClick={googleSignin} >
-          <span className="signinButton">Google Sign in</span>
-          </button>
-        </div>
-        <div id="chat_container">
-          &nbsp;
-        </div>
-      </div>
-  )
-   }
-
+    
+  </div>
+  );
 }
