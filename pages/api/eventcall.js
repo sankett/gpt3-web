@@ -1,4 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai';
+import  RenderData  from "./render";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -7,21 +8,65 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
+let collected_events = []
+let completion_text = ''
 const generateEvent = async (req, res) => {
-    const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `Hello how are you ?`,
-        temperature: 0, // Higher values means the model will take more risks.
-        max_tokens: 250, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
-        top_p: 1, // alternative to sampling with temperature, called nucleus sampling
-        frequency_penalty: 0.5, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
-        presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
-        stream: true,
-        stop: "\n"
-      });
-      console.log("response",response)
-      const promptOutput = response.data.choices.pop();
-      
-      res.status(200).json({ output: promptOutput });
+  const start_time = Date.now();
+
+  // send a Completion request to count to 100
+  const response = await openai.createCompletion(
+      {model:'code-davinci-002',//code-davinci-002',
+      prompt:`${req.body.userInput}`,
+      max_tokens:3000,
+      temperature:0,
+      stream:true, 
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+   } // this time, we set stream=True
+  );
+  
+  
+  let collected_events = [];
+  let completion_text = {text:'test123'};
+ let eachData ="";
+  
+  let dt ="";
+  let prevData =""
+ for (let data of response.data) {
+  
+  if(data === "\n" && prevData === "\n"){
+    prevData =data
+    data = data.replace("\n","|")    
+    eachData = "";
+  }
+  else if(data === "\n" && prevData != "\n"){
+    prevData =data
+    data = data.replace("\n","")    
+    eachData += data;
+    
+    collected_events.push(eachData)
+    
+  }
+  else{
+    prevData =data
+    eachData += data;
+  }
+  
+  
+  
+  dt += data;
+  }
+  const finalArray =[]
+  collected_events.pop();
+  collected_events.forEach(element => {
+    finalArray.push(JSON.parse(element.trim().replace("data:","")).choices[0].text)
+    
+  });
+  
+ const finaldata= finalArray.join("")
+ //const finaldata= RenderData(response)
+
+      res.status(200).json({ output:  {text:finaldata} });
 };
 export default generateEvent

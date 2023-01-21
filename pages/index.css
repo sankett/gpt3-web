@@ -1,0 +1,30 @@
+.col2 {
+   float: left;
+   width: 98%;
+   vertical-align: top;
+   border: 1px dotted rgb(154, 141, 141);
+   border-radius: 5px;
+   padding: 5px;
+   margin-top: 10px;
+}
+
+.col1 {
+    float: left;
+    width: 42%;
+    
+    
+ }
+
+ 
+
+ .fade-in-text {
+   /*color:white;
+   font-family: Arial;*/
+   font-size: 14px;
+   animation: fadeIn 3s;
+ }
+
+ @keyframes fadeIn {
+   0% { opacity: 0; }
+   100% { opacity: 1; }
+ }
