@@ -475,7 +475,10 @@ export default function GPT() {
   }
   const getData = async () => {
     setIsGenerating(true);
-    await getImage();
+    if(selectedOption.value === '13'){
+      await getImage();
+    }
+    
     const apiCall = selectedOption.value === '12' ? '/api/detail' : selectedOption.value === '13' ? '/api/imagegen' : '/api/main';
     let response = await fetch(apiCall, {
       method: 'POST',
