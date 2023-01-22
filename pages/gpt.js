@@ -675,8 +675,10 @@ export default function GPT() {
         algorithm: darkAlgorithm,
         }}>
        
-        <span className='textLabel'>Category:</span><Select value={value3}  style={{ width: 150 }} onChange={handleChange} options={options} />&nbsp;
-        <span className='textLabel'>Examples:</span><Select value={value4}  style={{ width: 200 }} onChange={handleExample} options={selectedExample} />
+        <span className='textLabel'>Category:<Select value={value3}  style={{ width: 150 }} 
+        onChange={handleChange} options={options} /></span>&nbsp;
+        <br/><span className='textLabel'>Examples:<Select value={value4}  style={{ width: 200 }} 
+        onChange={handleExample} options={selectedExample} /></span>
         </ConfigProvider>
         </span>
         <span className='formclass2'>{selectedOption.preprompt}</span>
@@ -684,7 +686,7 @@ export default function GPT() {
        
           <span className="profile"><Image src={user} /></span>
           
-          <textarea className="inputtext" rows="2" cols="1" placeholder="Ask me (min. length 15)..." value={basicData.userInput}
+          <textarea className="inputtext" rows="4" cols="1" placeholder="Ask me (min. length 15)..." value={basicData.userInput}
             onChange={onUserChangedText} />
             <br />
           <span className='mouseCursor'>

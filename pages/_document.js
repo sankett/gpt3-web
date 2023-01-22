@@ -11,7 +11,7 @@ export default function Document() {
           content="https://storybook7.blob.core.windows.net/images/ai.png"
         />
         <meta name="twitter:card" content="summary_large_image"></meta>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        
       </Head>
       <body>
         <Main />

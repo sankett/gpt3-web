@@ -239,9 +239,12 @@ overflow-y: auto;
   line-height: 1.4em;
   letter-spacing: -0.1px;
   white-space:break-spaces;
-  margin-top: 6px;
-  margin-right: 5px;
+  margin-top: 3px;
+  margin-right: 1px;
   margin-left: 5px;
+  display: block;
+  float: left;
+  width: 40%;
 }
 
 .moreLabel {
@@ -306,7 +309,7 @@ overflow-y: auto;
   
   font-size: 16px;
   padding-top: 1px;
-  padding-left: 35px;
+  padding-left: 1px;
 }
 
 .formclass1span1{
