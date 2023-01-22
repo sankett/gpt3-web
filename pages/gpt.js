@@ -3,10 +3,10 @@ import Image from 'next/image';
 import bot from '../assets/bot.svg'
 import user from '../assets/user.svg'
 import send from '../assets/send.svg'
-import generate from '../assets/generate.png'
+
 import openai from '../assets/openai.png'
 import huggingface from '../assets/huggingface.png'
-import { ConfigProvider, theme, Select  } from 'antd';
+import { ConfigProvider, theme, Select, Button  } from 'antd';
 
 const options = [
   {
@@ -478,7 +478,6 @@ export default function GPT() {
     if(selectedOption.value === '13'){
       await getImage();
     }
-    
     const apiCall = selectedOption.value === '12' ? '/api/detail' : selectedOption.value === '13' ? '/api/imagegen' : '/api/main';
     let response = await fetch(apiCall, {
       method: 'POST',
@@ -562,7 +561,9 @@ export default function GPT() {
 
   const basic = async () => {
     
-    
+    if(basicData.userInput.length <= 15) {
+      return
+    }
     /*setBasicData(currentData => ({ ...currentData, output: selectedOption.prompt + 'Wait...', isloading: "1" }));*/
     loader()
     let isValid = await isValidModertaion();
@@ -675,7 +676,7 @@ export default function GPT() {
         }}>
        
         <span className='textLabel'>Category:</span><Select value={value3}  style={{ width: 150 }} onChange={handleChange} options={options} />&nbsp;
-        <span className='textLabel'>Examples:</span><Select value={value4}  style={{ width: 300 }} onChange={handleExample} options={selectedExample} />
+        <span className='textLabel'>Examples:</span><Select value={value4}  style={{ width: 200 }} onChange={handleExample} options={selectedExample} />
         </ConfigProvider>
         </span>
         <span className='formclass2'>{selectedOption.preprompt}</span>
@@ -683,10 +684,11 @@ export default function GPT() {
        
           <span className="profile"><Image src={user} /></span>
           
-          <textarea className="inputtext" rows="4" cols="1" placeholder="Ask me (min. length 15)..." value={basicData.userInput}
+          <textarea className="inputtext" rows="2" cols="1" placeholder="Ask me (min. length 15)..." value={basicData.userInput}
             onChange={onUserChangedText} />
-            
-          <span className='mouseCursor'><Image src={send} onClick={basic} /></span>
+            <br />
+          <span className='mouseCursor'>
+          <Button type="primary" onClick={basic}  className={basicData.userInput.length > 15 ? '' : 'btndisabled'}>Go</Button></span>
 
         </span>
         <span className='wrapper ai'>

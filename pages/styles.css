@@ -108,7 +108,7 @@ overflow-y: auto;
 }
 
 .messagebot2 {
-  font-size: 14px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.4em;
@@ -123,7 +123,7 @@ overflow-y: auto;
 }
 
 .messagebot3 {
-  font-size: 14px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.4em;
@@ -138,7 +138,7 @@ overflow-y: auto;
 }
 
 .messagebot4 {
-  font-size: 14px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.4em;
@@ -228,7 +228,7 @@ overflow-y: auto;
 .subspan {
   font-size: 16px;
   color:yellow;
-  
+  padding-left: 5px;
 }
 
 .textLabel {
@@ -265,13 +265,14 @@ overflow-y: auto;
     font-family: Arial, Helvetica, sans-serif;
     
     width: 100%;
-    padding-top: 14px;
+    padding-top: 0px;
     padding-bottom: 1px;
-    height: 50px;
+    height: 70px;
     /*background-size: 100% 50%;
     background-image: url("header.png");*/
-    background-image: linear-gradient(rgb(11, 21, 37), rgb(117, 111, 233));
-    padding-left: 10px;
+    background-image: linear-gradient(rgb(11, 21, 37), rgb(50, 49, 60));
+    padding-left: 0px;
+    
 }
 .formclass {
   width: 100%;
@@ -346,9 +347,9 @@ textarea {
 }
 
 .inputtext {
-  width: 85%;
+  width: 90%;
   color: rgb(241, 230, 230);
-  font-size: 16px;
+  font-size: 18px;
   /*font-family:'Courier New', Courier, monospace;*/
   padding: 10px;
   background: transparent;
@@ -401,3 +402,5 @@ form img {
     background: whitesmoke;
     border-radius: 10px;
   }
+
+  

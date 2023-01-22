@@ -1,6 +1,6 @@
 .col2 {
    float: left;
-   width: 98%;
+   width: 95%;
    vertical-align: top;
    border: 1px dotted rgb(154, 141, 141);
    border-radius: 5px;
@@ -15,16 +15,24 @@
     
  }
 
- 
+
 
  .fade-in-text {
    /*color:white;
-   font-family: Arial;*/
-   font-size: 14px;
+   font-family: Arial;
+   font-size: 14px;*/
    animation: fadeIn 3s;
  }
 
  @keyframes fadeIn {
    0% { opacity: 0; }
    100% { opacity: 1; }
+ }
+
+ .signature {
+  font-size: 24px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 15px;
+  color: white;
  }
