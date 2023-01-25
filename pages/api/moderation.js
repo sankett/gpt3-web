@@ -1,5 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai';
-import NextCors from 'nextjs-cors';
+import Cors from 'cors';
+import initMiddleware from '../../lib/init-middleware';
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -8,14 +9,17 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
+const cors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  Cors({
+    // Only allow requests with GET, POST and OPTIONS
+    methods: ['OPTIONS'],
+  })
+);
+
 const generateModeration = async (req, res) => {
-  await NextCors(req, res, {
-    // Options
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    origin: '*',
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
- });
-    
+  
+  await cors(req, res);
     const response = await openai.createModeration({
         input: `${req.body.userInput}`,
       });
