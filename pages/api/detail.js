@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai';
-
+import NextCors from 'nextjs-cors';
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -14,6 +14,12 @@ Write me a detailed table of contents for a blog post with the title below.
 Title:
 `
 const generateAction = async (req, res) => {
+  await NextCors(req, res, {
+    // Options
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+ });
   // Run first prompt
   console.log(`API: ${basePromptPrefix}${req.body.userInput}`)
 
